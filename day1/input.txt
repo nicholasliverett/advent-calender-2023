@@ -1,5 +1,4 @@
-#day1 variables
-calibration_doc = """gsjgklneight6zqfz
+gsjgklneight6zqfz
 7one718onegfqtdbtxfcmd
 xvtfhkm8c9
 914two8
@@ -998,16 +997,4 @@ fivetngxlttf4
 gldsixrhss186seven6
 gnpksz4
 4919
-pbc19"""
-
-words2num_dict = {
-    "one": "o1e",
-    "two": "t2o",
-    "three": "t3e",
-    "four": "f4r",
-    "five": "f5e",
-    "six": "s6x",
-    "seven": "s7n",
-    "eight": "e8t",
-    "nine": "n9e"
-}
+pbc19

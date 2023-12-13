@@ -2,14 +2,15 @@
 
 # clean up list and add first and last digits of each line
 
-from variables import calibration_doc
 import re
+
+calibration_doc = open("day1\input.txt").read()
 
 # convert long string to managable list of each line
 calibration_doc = list(calibration_doc.split("\n"))
 s = calibration_doc
 
-# while loop or whateer
+# while loop or whatever
 i=0
 total_of_digits = 0
 while len(calibration_doc) > i:
@@ -28,4 +29,4 @@ while len(calibration_doc) > i:
 
 
 
-print("Sum of all of the Calibration Values: " + str(total_of_digits) + "\n\n :)")
+print("Sum of all of the Calibration Values: " + str(total_of_digits) + "\n\n :) \n")
