@@ -17,38 +17,31 @@ minreq = []
 
 # go through each color of cube and their respective rule to determine games that do not work
 for key, value in rules.items():
-    i = 0
     # go through each game and remove "Game #:" and split each set into list items
-    for games in inputgames:
-        ig = inputgames[i].replace(f"Game {i+1}:", "")
+    for id, games in enumerate(inputgames):
+        ig = games.replace(f"Game {id + 1}:", "")
         ig = list(ig.split(";"))
-        ii = 0
         cubecolor = []
         # find respective color's amount in each set and add to a list
         for games in ig:
-            colorindex = ig[ii].find(key)
-            ig3 = ig[ii][colorindex - 3:colorindex - 1]
+            colorindex = games.find(key)
+            ig3 = games[colorindex - 3:colorindex - 1]
             if colorindex == -1:
                 cubecolor += "0"
             else:
                 cubecolor += [ig3.replace(" ", "")]
-            ii += 1
         # take max color of game append list, red is first, then the rest are multiplied to create the "power" of each game
         colormax = int(max(list(map(int, cubecolor))))
         if key == 'red':
             minreq += [colormax]
         else:
-            minreq[i] = minreq[i] * colormax
-
-        i += 1
+            minreq[id] = minreq[id] * colormax
 
 # for loop setup and such
-i = 0
 sumtotal = 0
 
 # power's of each game are added together to create a total sum of all the powers
 for games in minreq:
-    sumtotal += minreq[i]
-    i += 1
+    sumtotal += games
 
 print(sumtotal)
