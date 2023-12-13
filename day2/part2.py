@@ -1,5 +1,5 @@
 # day 2
-# sum of game ids that would have been possible if the bag contained 12 red, 13 green, and 14 blue cubes
+# sum of game ids that would have been possible if the bag contained 12 red, 13 green, and 14 blue cubes - PART 2: multiply amt of min required cubes of each game together and find sum
 
 games = open("day2/input.txt").read()
 
@@ -13,8 +13,7 @@ rules = {
 inputgames = list(games.split("\n"))
 
 # setup and such - working games is not used, kinda of a placeholder
-workinggames = []
-failinggames = []
+minreq = []
 
 # go through each color of cube and their respective rule to determine games that do not work
 for key, value in rules.items():
@@ -34,21 +33,22 @@ for key, value in rules.items():
             else:
                 cubecolor += [ig3.replace(" ", "")]
             ii += 1
-        # check if the max of the game is possible according to the rules and adding it to list if condition not met
-        if int(max(list(map(int, cubecolor)))) > value:
-            failinggames += [f"{i+1}"]
+        # take max color of game append list, red is first, then the rest are multiplied to create the "power" of each game
+        colormax = int(max(list(map(int, cubecolor))))
+        if key == 'red':
+            minreq += [colormax]
+        else:
+            minreq[i] = minreq[i] * colormax
+
         i += 1
 
-# setup more for loops, more for loops, more for loops
-sumtotal = 0
+# for loop setup and such
 i = 0
+sumtotal = 0
 
-# find sum of all game #'s that "failed" the predefined conditions of 12 red, 13 green, and 14 blue
-for games in list(set(failinggames)):
-    sumtotal += int(list(set(failinggames))[i])
+# power's of each game are added together to create a total sum of all the powers
+for games in minreq:
+    sumtotal += minreq[i]
     i += 1
 
-# find total of all game #'s assuming all passed the conditions, so the failed ones can be subtracted leaving only the working games #'s
-sumofallgames = int((len(inputgames) * (len(inputgames) + 1)) / 2)
-
-print(f"Total Working Games: {sumofallgames - sumtotal}")
+print(sumtotal)
